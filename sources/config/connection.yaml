@@ -1,0 +1,10 @@
+# This file was automatically generated
+
+name: mydatabase
+type: postgres
+options:
+  host: localhost
+  port: 5432
+  database: vulcan_evidence
+  user: postgres
+  password: hung123456
