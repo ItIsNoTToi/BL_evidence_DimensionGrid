@@ -6,7 +6,7 @@ title: "Bảng dữ liệu"
 # Bảng dữ liệu
 ```sql dataquery
     SELECT
-        *
+    *
     FROM mydatabase.getdata
     ORDER BY agency_name, company_name
 ```
@@ -31,7 +31,7 @@ title: "Bảng dữ liệu"
     SELECT
         DATE_TRUNC('day', l.action_time) AS activity_day,
         COUNT(*) FILTER (WHERE l.action_type = 'login') AS login_count,
-        COUNT(*) FILTER (WHERE l.action_type = 'logout') AS logout_count
+        COUNT(*) FILTER (WHERE l.action_type = 'logout') AS logout_count,
     FROM mydatabase.logs l
     JOIN mydatabase.getdata d 
     ON l.user_id = d.user_id
@@ -48,4 +48,17 @@ title: "Bảng dữ liệu"
   title="Hoạt động đăng nhập / đăng xuất theo ngày"
 />
 
+```sql agency_name
+    SELECT
+    agency_name,
+    company_name,
+    user_name,
+    login_count, logout_count
+    FROM mydatabase.getdata d 
+    WHERE ${inputs.multi_dimensions} 
+    GROUP BY all
+    ORDER BY all
+```
 ---
+
+<DataTable data={agency_name} />
