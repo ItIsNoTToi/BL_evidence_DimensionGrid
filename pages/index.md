@@ -7,13 +7,19 @@ title: "Bảng dữ liệu"
 ```sql dataquery
     SELECT
     *
-    FROM mydatabase.getdata
+    FROM qlvt.getdata
     ORDER BY agency_name, company_name
 ```
-
 <DataTable 
  data={dataquery} 
 />
+
+<Checkbox
+    title="button kiem tra uu tien" 
+    name=date_today
+  />
+
+<DataTable title="getuser" data={getuser} />
 
 ## Dimension Grid
 ---
@@ -27,13 +33,21 @@ title: "Bảng dữ liệu"
   multiple
 />
 
+```sql getuser
+  SELECT DISTINCT ON (id) *
+  FROM (
+      ${checkToday(inputs.date_today, "db.getuser", "db.getuser2")}
+  ) t
+  ORDER BY id, priority;
+```
+
 ```sql monthly_activity
     SELECT
         DATE_TRUNC('day', l.action_time) AS activity_day,
         COUNT(*) FILTER (WHERE l.action_type = 'login') AS login_count,
         COUNT(*) FILTER (WHERE l.action_type = 'logout') AS logout_count,
-    FROM mydatabase.logs l
-    JOIN mydatabase.getdata d 
+    FROM qlvt.logs l
+    JOIN qlvt.getdata d 
     ON l.user_id = d.user_id
     WHERE ${inputs.multi_dimensions} 
     GROUP BY 1
@@ -54,7 +68,7 @@ title: "Bảng dữ liệu"
     company_name,
     user_name,
     login_count, logout_count
-    FROM mydatabase.getdata d 
+    FROM qlvt.getdata d 
     WHERE ${inputs.multi_dimensions} 
     GROUP BY all
     ORDER BY all

@@ -33,6 +33,7 @@
     "@evidence-dev/tailwind": "^3.0.10",
     "@evidence-dev/trino": "^1.0.9",
     "apexcharts": "^5.3.5",
+    "evidence-connector-s3": "github:ItIsNoTToi/evidence-connector-s3",
     "svelte-apexcharts": "^1.0.2"
   },
   "overrides": {

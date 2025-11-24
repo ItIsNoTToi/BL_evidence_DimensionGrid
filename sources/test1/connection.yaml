@@ -1,0 +1,11 @@
+# This file was automatically generated
+type: s3
+name: qlvt
+options:
+  accessKeyId: wdGsp6URmtosEYCt6yMR
+  endpoint: 3.16.89:9900
+  region: us-east-1
+  useSSL: false
+# Advanced Options, you probably don't want to change this
+buildOptions:
+  batchSize: 1000000
